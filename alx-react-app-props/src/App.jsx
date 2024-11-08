@@ -8,8 +8,10 @@ function App() {
 
   return (
     <UserContext.Provider value={userData}>
-      <ProfilePage />
-    </UserContext.Provider>
+    <ProfilePage />
+  </UserContext.Provider>
+  
+    
   );
 }
 
