@@ -7,7 +7,7 @@ function App() {
       <h1>Recipe Sharing App</h1>
       <AddRecipeForm />
       <RecipeList />
-      
+    
     </div>
   );
 }
