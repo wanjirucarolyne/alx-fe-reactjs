@@ -4,6 +4,19 @@ import { Link } from 'react-router-dom';
   const RecipeList = () => {
     const recipes = useRecipeStore(state => state.recipes);
 
+    const addFavorite = useRecipeStore((state) => state.addFavorite);
+  const removeFavorite = useRecipeStore((state) => state.removeFavorite);
+  const favorites = useRecipeStore((state) => state.favorites);
+
+  const toggleFavorite = (id) => {
+    if (favorites.includes(id)) {
+      removeFavorite(id);
+    } else {
+      addFavorite(id);
+    }
+  };
+
+
     useEffect(() => {
         filterRecipes();
       }, [filterRecipes]);
