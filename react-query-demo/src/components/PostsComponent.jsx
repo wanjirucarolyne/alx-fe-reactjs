@@ -11,7 +11,6 @@ const fetchPosts = async () => {
 };
 
 const PostsComponent = () => {
-  // React Query's useQuery with the cacheTime option
   const {
     data,
     isLoading,
@@ -20,11 +19,13 @@ const PostsComponent = () => {
     refetch,
     isFetching,
   } = useQuery(
-    'posts', // Key for the query
+    'posts', // Query key
     fetchPosts, // Function to fetch data
     {
+      refetchOnWindowFocus: true, // Automatically refetch data when window regains focus
+      keepPreviousData: true, // Keep old data while fetching new data
       cacheTime: 300000, // Cache inactive data for 5 minutes (300,000 ms)
-      staleTime: 5000, // Data is considered fresh for 5 seconds
+      staleTime: 5000, // Data is fresh for 5 seconds before being marked stale
     }
   );
 
