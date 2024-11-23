@@ -1,13 +1,11 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-
-// Simulate an authentication status
-const isAuthenticated = () => {
-  return localStorage.getItem('auth') === 'true';
-};
+import { useAuth } from '../hooks/useAuth'; // Assuming useAuth is in a hooks folder
 
 const ProtectedRoute = () => {
-  return isAuthenticated() ? <Outlet /> : <Navigate to="/login" replace />;
+  const isAuthenticated = useAuth(); // Custom hook to check authentication
+
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default ProtectedRoute;
