@@ -1,5 +1,7 @@
 import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
+import ProfileDetails from './ProfileDetails';
+import ProfileSettings from './ProfileSettings';
 
 const Profile = () => {
   return (
@@ -15,7 +17,12 @@ const Profile = () => {
           </li>
         </ul>
       </nav>
-      <Outlet /> {/* Render nested routes here */}
+
+      {/* Define nested routes here */}
+      <Routes>
+        <Route path="details" element={<ProfileDetails />} />
+        <Route path="settings" element={<ProfileSettings />} />
+      </Routes>
     </div>
   );
 };
