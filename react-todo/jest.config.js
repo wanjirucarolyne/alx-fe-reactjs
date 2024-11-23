@@ -1,5 +1,4 @@
-const jestConfig ={
-    testEnvironment: "jsdom",
-};
-
-export default jestConfig;
+module.exports = {
+    testEnvironment: 'jest-environment-jsdom',  // Use jsdom for React testing
+  };
+  
