@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import TodoList from '../components/TodoList';
+import TodoList from '../TodoList';
 
 describe('TodoList Component', () => {
 
