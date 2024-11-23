@@ -11,7 +11,7 @@ const App = () => {
     <Router>
       <Routes>
         {/* Dynamic route for blog posts */}
-        <Route path="/blog/:postId" element={<BlogPost />} />
+        <Route path="/blog/:id" element={<BlogPost />} />
 
         {/* Protected route for profile */}
         <Route element={<ProtectedRoute />}>
