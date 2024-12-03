@@ -9,10 +9,10 @@ const AddRecipeForm = () => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    const { name, value } = e.target; // Access target.value
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value, // Update state dynamically based on the field name
+      [name]: value,
     }));
   };
 
@@ -31,7 +31,6 @@ const AddRecipeForm = () => {
     e.preventDefault();
     if (validateForm()) {
       console.log('Form submitted:', formData);
-      // Clear the form after submission
       setFormData({ title: '', ingredients: '', steps: '' });
       setErrors({});
     }
@@ -42,7 +41,7 @@ const AddRecipeForm = () => {
       <h1 className="text-3xl font-bold text-center mb-6">Add New Recipe</h1>
       <form
         onSubmit={handleSubmit}
-        className="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6"
+        className="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6 md:max-w-2xl md:p-8"
       >
         <div className="mb-4">
           <label
@@ -56,8 +55,8 @@ const AddRecipeForm = () => {
             id="title"
             name="title"
             value={formData.title}
-            onChange={handleChange} // Handle change
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 md:text-lg"
           />
           {errors.title && (
             <p className="text-red-500 text-sm mt-1">{errors.title}</p>
@@ -76,8 +75,8 @@ const AddRecipeForm = () => {
             name="ingredients"
             rows="3"
             value={formData.ingredients}
-            onChange={handleChange} // Handle change
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 md:text-lg"
           ></textarea>
           {errors.ingredients && (
             <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>
@@ -96,8 +95,8 @@ const AddRecipeForm = () => {
             name="steps"
             rows="5"
             value={formData.steps}
-            onChange={handleChange} // Handle change
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 md:text-lg"
           ></textarea>
           {errors.steps && (
             <p className="text-red-500 text-sm mt-1">{errors.steps}</p>
@@ -106,7 +105,7 @@ const AddRecipeForm = () => {
 
         <button
           type="submit"
-          className="w-full bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition duration-200"
+          className="w-full bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition duration-200 md:px-6 md:py-3 md:text-lg"
         >
           Submit Recipe
         </button>
