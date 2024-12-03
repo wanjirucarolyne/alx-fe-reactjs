@@ -1,0 +1,22 @@
+[
+    {
+      "id": 1,
+      "title": "Spaghetti Carbonara",
+      "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+      "image": "https://www.freepik.com/free-photo/side-view-club-sandwich-with-chicken-french-fries-sauces-wooden-board_8402911.htm#fromView=search&page=1&position=44&uuid=76c6c9e5-ce9e-49ec-a21f-39795dc87594"
+    },
+    {
+      "id": 2,
+      "title": "Chicken Tikka Masala",
+      "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+      "image": "https://unsplash.com/photos/a-table-topped-with-lots-of-food-and-drinks-5UcFfx3XYj4"
+    },
+
+    {
+      "id": 3,
+      "title": "Chicken Tikka Masala",
+      "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+      "image": "https://via.placeholder.com/150"
+    }
+
+  ]
