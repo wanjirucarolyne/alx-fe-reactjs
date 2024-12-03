@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const AddRecipeForm = () => {
-    
   const [formData, setFormData] = useState({
     title: '',
     ingredients: '',
@@ -10,8 +9,11 @@ const AddRecipeForm = () => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value } = e.target; // Access target.value
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value, // Update state dynamically based on the field name
+    }));
   };
 
   const validateForm = () => {
@@ -54,7 +56,7 @@ const AddRecipeForm = () => {
             id="title"
             name="title"
             value={formData.title}
-            onChange={handleChange}
+            onChange={handleChange} // Handle change
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
           {errors.title && (
@@ -74,7 +76,7 @@ const AddRecipeForm = () => {
             name="ingredients"
             rows="3"
             value={formData.ingredients}
-            onChange={handleChange}
+            onChange={handleChange} // Handle change
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           ></textarea>
           {errors.ingredients && (
@@ -94,14 +96,13 @@ const AddRecipeForm = () => {
             name="steps"
             rows="5"
             value={formData.steps}
-            onChange={handleChange}
+            onChange={handleChange} // Handle change
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           ></textarea>
           {errors.steps && (
             <p className="text-red-500 text-sm mt-1">{errors.steps}</p>
           )}
         </div>
-        
 
         <button
           type="submit"
