@@ -3,15 +3,20 @@ import axios from 'axios';
 const apiUrl = import.meta.env.VITE_GITHUB_API_URL || 'https://api.github.com';
 
 /**
- * Fetch user data from GitHub API.
- * @param {string} username - The GitHub username to search.
- * @returns {Promise<Object>} The user data.
+ * Fetch advanced search results from GitHub API.
+ * @param {Object} query - The search query object with username, location, and repos.
+ * @returns {Promise<Object>} The search results.
  */
-export const fetchUserData = async (username) => {
+export const fetchAdvancedSearchResults = async ({ username, location, repos }) => {
   try {
-    const response = await axios.get(`${apiUrl}/users/${username}`);
+    let queryString = '';
+    if (username) queryString += `${username} `;
+    if (location) queryString += `location:${location} `;
+    if (repos) queryString += `repos:>${repos} `;
+
+    const response = await axios.get(`${apiUrl}/search/users?q=${encodeURIComponent(queryString)}`);
     return response.data;
   } catch (error) {
-    throw new Error('User not found');
+    throw new Error('Error fetching search results');
   }
 };
