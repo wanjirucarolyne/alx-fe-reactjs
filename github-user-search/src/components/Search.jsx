@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { fetchAdvancedSearchResults } from '../services/githubService';
+import { fetchUserData } from '../services/githubService';
 
 const Search = () => {
   const [username, setUsername] = useState('');
   const [location, setLocation] = useState('');
   const [minRepos, setMinRepos] = useState('');
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -13,10 +13,10 @@ const Search = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    setResults([]);
+    setResults(null);
 
     try {
-      const data = await fetchAdvancedSearchResults({ username, location, repos: minRepos });
+      const data = await fetchUserData({ username, location, minRepos });
       setResults(data.items || []); // The `items` field contains the list of users
     } catch (err) {
       setError('Looks like we can’t find the user.');
@@ -70,7 +70,7 @@ const Search = () => {
       <div className="mt-4">
         {loading && <p>Loading...</p>}
         {error && <p className="text-red-500">{error}</p>}
-        {results.length > 0 && (
+        {results && results.length > 0 && (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4">
             {results.map((user) => (
               <div
@@ -94,6 +94,9 @@ const Search = () => {
               </div>
             ))}
           </div>
+        )}
+        {results && results.length === 0 && !loading && (
+          <p>No users found matching the criteria.</p>
         )}
       </div>
     </div>
