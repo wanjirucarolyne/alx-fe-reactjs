@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { fetchUserData } from '../services/githubService';
 
-function SearchBar() {
-  const [query, setQuery] = useState(''); // For storing user input
-  const [user, setUser] = useState(null); // For storing user data from the API
+function Search() {
+  const [query, setQuery] = useState(''); // For storing the input value
+  const [user, setUser] = useState(null); // For storing user data
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(false); // Error state
 
-  // Handle form submission
+  // Handle the form submission
   const handleSearch = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError(false);
-    setUser(null);
+    setLoading(true); // Indicate loading state
+    setError(false); // Reset error state
+    setUser(null); // Clear previous results
 
     try {
       const data = await fetchUserData(query);
-      setUser(data);
+      setUser(data); // Set the user data on success
     } catch (err) {
-      setError(true);
+      setError(true); // Set error state if the user is not found
     } finally {
-      setLoading(false);
+      setLoading(false); // End the loading state
     }
   };
 
@@ -37,7 +37,7 @@ function SearchBar() {
         <button type="submit">Search</button>
       </form>
 
-      {/* Display different states */}
+      {/* Conditional rendering for different states */}
       {loading && <p>Loading...</p>}
       {error && <p>Looks like we can't find the user.</p>}
       {user && (
@@ -53,4 +53,4 @@ function SearchBar() {
   );
 }
 
-export default SearchBar;
+export default Search;
