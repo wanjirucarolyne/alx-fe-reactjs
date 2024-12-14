@@ -69,7 +69,7 @@ const Search = () => {
 
       <div className="mt-4">
         {loading && <p>Loading...</p>}
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p className="text-red-500">Looks like we cant find the user</p>}
         {results && results.length > 0 && (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4">
             {results.map((user) => (
