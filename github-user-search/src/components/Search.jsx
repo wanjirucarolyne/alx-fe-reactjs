@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { fetchAdvancedSearchResults } from '../services/githubService';
 
-function Search() {
+const Search = () => {
   const [username, setUsername] = useState('');
   const [location, setLocation] = useState('');
-  const [repos, setRepos] = useState('');
+  const [minRepos, setMinRepos] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -16,105 +16,88 @@ function Search() {
     setResults([]);
 
     try {
-      const query = {
-        username: username.trim(),
-        location: location.trim(),
-        repos: repos.trim(),
-      };
-      const data = await fetchAdvancedSearchResults(query);
-      setResults(data.items); // GitHub API returns results in the "items" array.
+      const data = await fetchAdvancedSearchResults({ username, location, repos: minRepos });
+      setResults(data.items || []); // The `items` field contains the list of users
     } catch (err) {
-      setError('An error occurred while fetching results.');
+      setError('Looks like we can’t find the user.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto bg-white shadow-md rounded-lg">
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">GitHub User Search</h1>
       <form onSubmit={handleSearch} className="space-y-4">
         <div>
-          <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-            Username
-          </label>
+          <label className="block text-sm font-medium mb-1">Username:</label>
           <input
-            id="username"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="GitHub username"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            placeholder="Enter username"
+            className="border p-2 w-full rounded"
           />
         </div>
-
         <div>
-          <label htmlFor="location" className="block text-sm font-medium text-gray-700">
-            Location
-          </label>
+          <label className="block text-sm font-medium mb-1">Location:</label>
           <input
-            id="location"
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            placeholder="City, country, etc."
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            placeholder="Enter location"
+            className="border p-2 w-full rounded"
           />
         </div>
-
         <div>
-          <label htmlFor="repos" className="block text-sm font-medium text-gray-700">
-            Minimum Repositories
-          </label>
+          <label className="block text-sm font-medium mb-1">Minimum Repositories:</label>
           <input
-            id="repos"
             type="number"
-            value={repos}
-            onChange={(e) => setRepos(e.target.value)}
-            placeholder="Number of repositories"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            value={minRepos}
+            onChange={(e) => setMinRepos(e.target.value)}
+            placeholder="Enter minimum repositories"
+            className="border p-2 w-full rounded"
           />
         </div>
-
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-700"
+          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
         >
           Search
         </button>
       </form>
 
-      {loading && <p className="mt-4 text-indigo-600">Loading...</p>}
-      {error && <p className="mt-4 text-red-600">{error}</p>}
-      {results.length > 0 && (
-        <div className="mt-6">
-          <h2 className="text-xl font-bold">Search Results:</h2>
-          <ul className="space-y-4">
+      <div className="mt-4">
+        {loading && <p>Loading...</p>}
+        {error && <p className="text-red-500">{error}</p>}
+        {results.length > 0 && (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4">
             {results.map((user) => (
-              <li key={user.id} className="p-4 bg-gray-100 rounded-md shadow-sm">
-                <div className="flex items-center space-x-4">
-                  <img src={user.avatar_url} alt={user.login} className="w-12 h-12 rounded-full" />
-                  <div>
-                    <h3 className="text-lg font-semibold">{user.login}</h3>
-                    <p className="text-sm text-gray-600">
-                      Location: {user.location || 'Not specified'}
-                    </p>
-                    <a
-                      href={user.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-indigo-600 hover:underline"
-                    >
-                      View Profile
-                    </a>
-                  </div>
-                </div>
-              </li>
+              <div
+                key={user.id}
+                className="border p-4 rounded shadow hover:shadow-lg transition"
+              >
+                <img
+                  src={user.avatar_url}
+                  alt={user.login}
+                  className="w-16 h-16 rounded-full mx-auto mb-2"
+                />
+                <h2 className="text-center font-semibold">{user.login}</h2>
+                <a
+                  href={user.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 text-center block mt-2"
+                >
+                  View Profile
+                </a>
+              </div>
             ))}
-          </ul>
-        </div>
-      )}
+          </div>
+        )}
+      </div>
     </div>
   );
-}
+};
 
 export default Search;
