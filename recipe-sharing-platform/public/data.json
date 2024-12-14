@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "title": "Spaghetti Carbonara",
+      "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+      "image": "https://www.freepik.com/free-photo/side-view-club-sandwich-with-chicken-french-fries-sauces-wooden-board_8402911.htm#fromView=search&page=1&position=44&uuid=76c6c9e5-ce9e-49ec-a21f-39795dc87594",
+     "ingredients": [
+      "200g spaghetti",
+      "100g pancetta",
+      "2 large eggs",
+      "50g pecorino cheese",
+      "Black pepper"
+    ],
+    "instructions": [
+      "Cook the spaghetti according to the package instructions.",
+      "Fry the pancetta until crispy.",
+      "Beat the eggs and mix with grated pecorino cheese.",
+      "Toss the pasta with pancetta and remove from heat.",
+      "Add the egg and cheese mixture and stir quickly to combine."
+    ]
+  },
+    {
+      "id": 2,
+      "title": "Chicken Tikka Masala",
+      "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+      "image": "https://unsplash.com/photos/a-table-topped-with-lots-of-food-and-drinks-5UcFfx3XYj4",
+      "ingredients": [
+      "500g chicken breast",
+      "1 cup yogurt",
+      "2 tbsp tikka masala paste",
+      "1 onion",
+      "200ml tomato puree"
+    ],
+    "instructions": [
+      "Marinate the chicken with yogurt and tikka masala paste for 4 hours.",
+      "Grill the chicken until cooked through.",
+      "Fry onions until golden, then add tomato puree and cook for 10 minutes.",
+      "Add grilled chicken to the sauce and simmer for 15 minutes.",
+      "Serve with rice or naan."
+    ]
+    }
+
+  ]
