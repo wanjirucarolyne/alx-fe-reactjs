@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = import.meta.env.VITE_GITHUB_API_URL || 'https://api.github.com';
+const apiUrl = import.meta.env.VITE_GITHUB_API_URL || 'https://api.github.com/search/users?q';
 
 /**
  * Fetch advanced search results from GitHub API.
